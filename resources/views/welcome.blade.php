@@ -4,42 +4,55 @@ Welcome!
 @endsection
 
 @section('content')
+@if(count($errors)>0)
+<div class="row">
+    <div class='col-md-6'>
+        <ul>
+            @foreach($errors->all() as $error)
+            <li>{{$error}}</li>
+            @endforeach
+        </ul>
+    </div>
+</div>
+@endif
 <div class="row">
     <div class="col-md-6">
         <h3>Sign Up</h3>
-        <form action="#" method="POST">
-            <div class="form-group">
+        <form action="{{'signup'}}" method="POST">
+            <div class="form-group {{$errors->has('email')?'has-error':''}}">
                 <label for="email">Your Email</label>
-                <input class="form-control" type="text" name="email" id="email">
+                <input class="form-control" type="text" name="email" id="email" value="{{Request::old('email')}}">
             </div>
             
-            <div class="form-group">
+            <div class="form-group {{$errors->has('first_name')?'has-error':''}}">
                 <label for="fname">First Name</label>
-                <input class="form-control" type="text" name="first_name" id="first_name">
+                <input class="form-control" type="text" name="first_name" id="first_name" value="{{Request::old('first_name')}}">
             </div>
             
-            <div class="form-group">
+            <div class="form-group {{$errors->has('password')?'has-error':''}}">
                 <label for="email">Password</label>
-                <input class="form-control" type="password" name="password" id="password">
+                <input class="form-control" type="password" name="password" id="password" value="{{Request::old('password')}}">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
+            <input type="hidden" name="_token" value="{{Session::token()}}">
         </form>
     </div>
     
     <div class="col-md-6">
         <h3>Sign In</h3>
-        <form action="#" method="POST">
-            <div class="form-group">
+        <form action="{{'signin'}}" method="POST">
+            <div class="form-group {{$errors->has('email')?'has-error':''}}">
                 <label for="email">Your Email</label>
-                <input class="form-control" type="text" name="email" id="email">
+                <input class="form-control" type="text" name="email" id="email" value="{{Request::old('email')}}">
             </div>
             
             
-            <div class="form-group">
+            <div class="form-group {{$errors->has('password')?'has-error':''}}">
                 <label for="email">Password</label>
-                <input class="form-control" type="password" name="password" id="password">
+                <input class="form-control" type="password" name="password" id="password" value="{{Request::old('password')}}">
             </div>
              <button type="submit" class="btn btn-primary">Login</button>
+             <input type="hidden" name="_token" value="{{Session::token()}}">
         </form>
     </div>
 </div>
