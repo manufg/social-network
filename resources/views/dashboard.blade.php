@@ -11,13 +11,14 @@ Dashboard
     <div class="col-md-6 col-md-offset-3">
         <header>
             <h3>What do you have to say?</h3>
-            <form action="">
+                <form action="{{route('post.create')}}" method="POST">
                 <div class="form-group">
-                    <textarea class="form-control" name="new-post" id="new-post"  rows="5" placeholder="Your Post">
+                    <textarea class="form-control" name="body" id="body"  rows="5" placeholder="Your Post">
                    
                     </textarea>
                 </div>
                 <button class="btn btn-primary"> Create Post</button>
+                <input type="hidden" name="_token" value="{{Session::token()}}">
             </form>
 
         </header>
