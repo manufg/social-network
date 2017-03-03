@@ -6,7 +6,7 @@ Dashboard
 
 @section('content')
 
-
+@include('includes.message-block')
 <section class="row new-post">
     <div class="col-md-6 col-md-offset-3">
         <header>
@@ -30,10 +30,11 @@ Dashboard
         <header>
             <h3>What other people say..</h3>
         </header>
-        <article class="post">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, nisi veritatis quas magnam quo sit alias a accusamus molestiae velit. Quos, distinctio aliquid soluta atque voluptates velit reiciendis numquam dicta.</p>
+        @foreach($posts as $post)
+         <article class="post">
+            <p>{{$post->body}}</p>
             <div class="info">
-                Posted by Manu on 12 Feb 2016 
+                Posted by {{$post->user->first_name}} on {{$post->created_at}}
             </div>
             <div class="interaction">
                 <a href="#">Like</a>|
@@ -42,19 +43,10 @@ Dashboard
                 <a href="#">Delete</a>
             </div>
         </article>
+        @endforeach
+       
         
-        <article class="post">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, nisi veritatis quas magnam quo sit alias a accusamus molestiae velit. Quos, distinctio aliquid soluta atque voluptates velit reiciendis numquam dicta.</p>
-            <div class="info">
-                Posted by Manu on 12 Feb 2016 
-            </div>
-            <div class="interaction">
-                <a href="#">Like</a>|
-                <a href="#">Dislike</a>|
-                <a href="#">Edit</a>|
-                <a href="#">Delete</a>
-            </div>
-        </article>
+        
     </div>
 </section>
 @endsection
