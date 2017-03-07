@@ -38,3 +38,7 @@ Route::get('/delete-post/{post_id}',[
 
 Route::get('/logout',['uses'=>'UserController@getLogout',
     'as'=>'logout']);
+
+Route::post('/edit', function(Illuminate\Http\Request $request){
+    return response()->json(['message'=>$request['postId']]);
+})->name('edit'); 
